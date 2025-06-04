@@ -27,6 +27,7 @@ This lab demonstrates how to detect brute force login attempts in a Windows envi
 3. Built a dashboard to visualize login patterns and possible brute force attacks.
 4. Configured a simple alert for excessive failed login attempts.
 
+![Dashboard Screenshot](dashboard.png)
 ---
 
 ## Key SPL Queries Used
@@ -36,8 +37,6 @@ This lab demonstrates how to detect brute force login attempts in a Windows envi
 index=brute_force_lab (EventCode=4624 OR EventCode=4625)
 | eval EventType=if(EventCode==4625, "Failed Login", "Successful Login")
 | timechart span=30s count by EventType
-
-![Dashboard Screenshot](Login_Attempts_Over_Time.png)
 
 ```
 
