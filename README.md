@@ -38,9 +38,8 @@ index=brute_force_lab (EventCode=4624 OR EventCode=4625)
 | eval EventType=if(EventCode==4625, "Failed Login", "Successful Login")
 | timechart span=30s count by EventType
 
-![Dashboard Screenshot](loginattempts.png)
 ```
-
+![Login Attempts Over Time](loginattempts.png)
 ### Top Attacking IPs
 ```spl
 index=brute_force_lab EventCode=4625
