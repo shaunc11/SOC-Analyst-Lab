@@ -40,12 +40,14 @@ index=brute_force_lab (EventCode=4624 OR EventCode=4625)
 
 ```
 ![Login Attempts Over Time](loginattempts.png)
+
 ### Top Attacking IPs
 ```spl
 index=brute_force_lab EventCode=4625
 | stats count by IpAddress
 | sort -count
 ```
+![Attacking IPS](attackingips.png)
 
 ### Brute Force Targets by Account
 ```spl
@@ -53,13 +55,14 @@ index=brute_force_lab EventCode=4625
 | stats count by AccountName
 | where count > 5
 ```
+![Brute Force Targets](bfs.png)
 
 ### Successful Login Table
 ```spl
 index=brute_force_lab EventCode=4624
 | table _time AccountName IpAddress WorkstationName
 ```
-
+![Successful Logins](successfullog.png)
 ---
 
 ## Dashboard Panels Built
@@ -81,6 +84,7 @@ index=brute_force_lab EventCode=4625
 ```
 Triggers if any IP exceeds 10 failed logins within a short window.
 
+![Alert](bfa.png)
 ---
 
 ## Takeaways
