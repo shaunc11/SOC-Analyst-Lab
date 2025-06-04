@@ -36,6 +36,9 @@ This lab demonstrates how to detect brute force login attempts in a Windows envi
 index=brute_force_lab (EventCode=4624 OR EventCode=4625)
 | eval EventType=if(EventCode==4625, "Failed Login", "Successful Login")
 | timechart span=30s count by EventType
+
+![Dashboard Screenshot](Login_Attempts_Over_Time.png)
+
 ```
 
 ### Top Attacking IPs
