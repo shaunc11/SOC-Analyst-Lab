@@ -1,4 +1,4 @@
-# 🛡️ Brute Force Detection Lab – Splunk SIEM
+# Brute Force Detection Lab – Splunk SIEM
 
 ## 👤 Author
 Shaun Carrillo  
@@ -7,20 +7,20 @@ Entry-Level Information Security Analyst | SIEM | Traffic Analysis | Incident Re
 
 ---
 
-## 📌 Project Objective
+## Project Objective
 This lab demonstrates how to detect brute force login attempts in a Windows environment using Splunk. I created a synthetic Windows Security Event Log, ingested it into Splunk, and built custom dashboards and alerts to identify suspicious authentication behavior.
 
 ---
 
-## 🧰 Tools & Technologies
-- 🖥️ **Splunk Free Tier (Local Instance)**
-- 📂 **Synthetic Log File** (`synthetic_brute_force.log`)
-- 🪟 **Windows Server 2022** (Simulated via VirtualBox)
-- 📦 **Event IDs Used**: `4624` (Successful Logon), `4625` (Failed Logon)
+## Tools & Technologies
+-  **Splunk Free Tier (Local Instance)**
+-  **Synthetic Log File** (`synthetic_brute_force.log`)
+-  **Windows Server 2022** (Simulated via VirtualBox)
+-  **Event IDs Used**: `4624` (Successful Logon), `4625` (Failed Logon)
 
 ---
 
-## 🔧 Setup Overview
+## Setup Overview
 
 1. Created a synthetic `.log` file with 20 failed and 1 successful login attempt.
 2. Uploaded the log into Splunk and assigned it to a custom index: `brute_force_lab`
@@ -29,30 +29,30 @@ This lab demonstrates how to detect brute force login attempts in a Windows envi
 
 ---
 
-## 🔍 Key SPL Queries Used
+## Key SPL Queries Used
 
-### 📈 Login Attempts Over Time
+### Login Attempts Over Time
 ```spl
 index=brute_force_lab (EventCode=4624 OR EventCode=4625)
 | eval EventType=if(EventCode==4625, "Failed Login", "Successful Login")
 | timechart span=30s count by EventType
 ```
 
-### 🌐 Top Attacking IPs
+### Top Attacking IPs
 ```spl
 index=brute_force_lab EventCode=4625
 | stats count by IpAddress
 | sort -count
 ```
 
-### 🎯 Brute Force Targets by Account
+### Brute Force Targets by Account
 ```spl
 index=brute_force_lab EventCode=4625
 | stats count by AccountName
 | where count > 5
 ```
 
-### 🧾 Successful Login Table
+### Successful Login Table
 ```spl
 index=brute_force_lab EventCode=4624
 | table _time AccountName IpAddress WorkstationName
@@ -60,7 +60,7 @@ index=brute_force_lab EventCode=4624
 
 ---
 
-## 📊 Dashboard Panels Built
+## Dashboard Panels Built
 
 | Panel Title              | Description                                        |
 |--------------------------|----------------------------------------------------|
@@ -71,7 +71,7 @@ index=brute_force_lab EventCode=4624
 
 ---
 
-## 🔔 Alert Logic (Optional)
+## Alert Logic (Optional)
 ```spl
 index=brute_force_lab EventCode=4625
 | stats count by IpAddress
@@ -81,8 +81,8 @@ Triggers if any IP exceeds 10 failed logins within a short window.
 
 ---
 
-## ✅ Takeaways
-- Learned how to simulate and ingest event logs into Splunk
+## Takeaways
+- Learned how to interpret and parse structured event data using Splunk
 - Built SPL queries to detect login-based anomalies
 - Gained hands-on experience with dashboards and alerting
 - Practiced correlation of Event IDs 4624 and 4625 to spot brute force attacks
