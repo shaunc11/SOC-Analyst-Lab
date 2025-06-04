@@ -14,16 +14,16 @@ This lab demonstrates how to detect brute force login attempts in a Windows envi
 
 ## Tools & Technologies
 -  **Splunk Free Tier (Local Instance)**
--  **Synthetic Log File** (`synthetic_brute_force.log`)
+-  **Synthetic Log File** (synthetic_brute_force.log)
 -  **Windows Server 2022** (Simulated via VirtualBox)
--  **Event IDs Used**: `4624` (Successful Logon), `4625` (Failed Logon)
+-  **Event IDs Used**: 4624 (Successful Logon), 4625 (Failed Logon)
 
 ---
 
 ## Setup Overview
 
-1. Created a synthetic `.log` file with 20 failed and 1 successful login attempt.
-2. Uploaded the log into Splunk and assigned it to a custom index: `brute_force_lab`
+1. Created a synthetic (.log) file with 20 failed and 1 successful login attempt.
+2. Uploaded the log into Splunk and assigned it to a custom index: (brute_force_lab)
 3. Built a dashboard to visualize login patterns and possible brute force attacks.
 4. Configured a simple alert for excessive failed login attempts.
 
