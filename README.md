@@ -94,8 +94,3 @@ Triggers if any IP exceeds 10 failed logins within a short window.
 - Practiced correlation of Event IDs 4624 and 4625 to spot brute force attacks
 
 ---
-
-## 📁 Files Included
-- `synthetic_brute_force.log` – Sample Windows Event Log (upload to Splunk)
-- `dashboard_screenshot.png` *(optional)* – Screenshot of completed dashboard
-- `infographic.png` *(optional)* – Visual summary for portfolio use
